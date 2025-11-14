@@ -15,36 +15,51 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <Grid RowDefinitions="Auto, *">
-        <!-- Header -->
-        <Menu Grid.Row="0" Background="{StaticResource SystemBaseLowColor}">
-            <MenuItem Header="File"/>
-            <MenuItem Header="Edit"/>
-            <MenuItem Header="Layer"/>
-            <MenuItem Header="Filters"/>
-            <MenuItem Header="Tools"/>
-            <MenuItem Header="Marketplace"/>
-        </Menu>
-        <!-- Everything below the Header -->
-        <Grid Grid.Row="1" ColumnDefinitions="Auto, *, Auto">
-            <!-- Toolbar -->
-            <StackPanel Grid.Column="0" Background="{StaticResource SystemBaseLowColor}">
-                <Button Classes="ToolButton" Content="A" Margin="4"/>
-                <Button Classes="ToolButton" Content="B" Margin="4"/>
-                <Button Classes="ToolButton" Content="C" Margin="4"/>
-                <Button Classes="ToolButton" Content="D" Margin="4"/>
-            </StackPanel>
-            <!-- Central Area -->
-            <Grid Grid.Column="1" RowDefinitions="*, Auto">
-                <TextBlock> This is the area the canvas will be.</TextBlock>
-                <TextBlock Grid.Row="1"> This is the optional bottom area?</TextBlock>
+    <Panel>
+        <!-- This will eventually be the user's canvas. -->
+        <Image x:Name="UserCanvas"
+               Source="avares://PhotomodMockup/Assets/PlaceholderCanvas.jpg" 
+               Stretch="UniformToFill" 
+               ZIndex="0"
+               />
+        <!-- UI overlays, rendered over the background -->
+        <Grid RowDefinitions="Auto, *" ZIndex="2" Opacity="1.0" >
+            <!-- Header -->
+            <Menu Grid.Row="0" Background="{StaticResource SystemBaseLowColor}">
+                <MenuItem Header="File"/>
+                <MenuItem Header="Edit"/>
+                <MenuItem Header="Layer"/>
+                <MenuItem Header="Filters"/>as 
+                <MenuItem Header="Tools"/>
+                <MenuItem Header="Marketplace"/>
+            </Menu>
+            <!-- Everything below the Header -->
+            <Grid Grid.Row="1" ColumnDefinitions="Auto, *, Auto">
+                <!-- Toolbar -->
+                <StackPanel Grid.Column="0">
+                    <Button Classes="ToolButton" Margin="4" HorizontalAlignment="Center">
+                        <Label Content="A" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"
+                               ></Label>
+                    </Button>
+                    <Button Classes="ToolButton" Margin="4" HorizontalAlignment="Center"/>
+                    <Button Classes="ToolButton" Margin="4" HorizontalAlignment="Center"/>
+                    <Button Classes="ToolButton" Margin="4" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <!-- Central Area -->
+                <Grid Grid.Column="1" RowDefinitions="*, Auto">
+                    <TextBlock> This is the area the canvas will be.</TextBlock>
+                    <TextBlock Grid.Row="1"> This is the optional bottom area?</TextBlock>
+                </Grid>
+                <!-- Right Panel -->
+                <StackPanel Grid.Column="2" Width="200">
+                    <TextBlock Text=" The right Panel inspector"></TextBlock>
+                </StackPanel>
             </Grid>
-            <!-- Right Panel -->
-            <StackPanel Grid.Column="2" Width="200">
-                <TextBlock Text=" The right Panel inspector"></TextBlock>
-            </StackPanel>
-        </Grid>
         
-    </Grid>
+        </Grid>
+    </Panel>
+    
 
 </Window>
